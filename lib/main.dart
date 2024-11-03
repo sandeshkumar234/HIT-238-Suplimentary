@@ -1,65 +1,24 @@
+import 'package:church/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/article_screen.dart';
-import 'screens/information_screen.dart';
-import 'screens/photos_screen.dart';
-
 void main() {
-  runApp(const ChurchInfoApp());
+  runApp(const MyApp());
 }
 
-class ChurchInfoApp extends StatelessWidget {
-  const ChurchInfoApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Church',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
-      home: const ChurchHomePage(),
-    );
-  }
-}
-
-class ChurchHomePage extends StatefulWidget {
-  const ChurchHomePage({super.key});
-
-  @override
-  State<ChurchHomePage> createState() => _ChurchHomePageState();
-}
-
-class _ChurchHomePageState extends State<ChurchHomePage> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    const InformationScreen(),
-    const PhotosScreen(),
-    ArticlesScreen(),
-  ];
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue.shade900,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        onTap: _onTabTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Photos'),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Articles'),
-        ],
-      ),
+      home: const HomeScreen(),
     );
   }
 }
